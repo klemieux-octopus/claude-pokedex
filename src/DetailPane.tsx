@@ -1,6 +1,6 @@
 import type { SpeciesDetail, Stats, Variety } from './data/types'
 import { dexLabel, metric } from './ui/format'
-import { typeColor } from './ui/typeColors'
+import { typeColor, typeTextColor } from './ui/typeColors'
 import { pickArtwork } from './ui/artwork'
 
 // Échelle fixe des barres de stat : la stat de base maximale du jeu. Une barre
@@ -58,7 +58,11 @@ export function DetailPane({ detail, shiny, shinyHeroUrl }: Props) {
 
       <div className="types">
         {variety.types.map((t) => (
-          <span key={t} className="type-badge" style={{ background: typeColor(t) }}>
+          <span
+            key={t}
+            className="type-badge"
+            style={{ background: typeColor(t), color: typeTextColor(t) }}
+          >
             {t}
           </span>
         ))}

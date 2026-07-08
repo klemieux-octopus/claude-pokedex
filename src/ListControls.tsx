@@ -1,6 +1,6 @@
 import { hasActiveControls, type SortKey } from './data/filterSort'
 import type { ListControlsApi } from './hooks/useListControls'
-import { TYPE_COLORS } from './ui/typeColors'
+import { TYPE_COLORS, typeTextColor } from './ui/typeColors'
 
 const TYPES = Object.keys(TYPE_COLORS)
 const GENERATIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -23,16 +23,16 @@ export function ListControls({
 }: Props) {
   return (
     <div className="controls">
-      <div className="controls-row">
-        <input
-          type="search"
-          className="control-search"
-          placeholder="Search name or №"
-          aria-label="Search Pokémon by name or number"
-          value={controls.q}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+      <input
+        type="search"
+        className="control-search"
+        placeholder="Search name or №"
+        aria-label="Search Pokémon by name or number"
+        value={controls.q}
+        onChange={(e) => setQuery(e.target.value)}
+      />
 
+      <div className="controls-row">
         <label className="control-field">
           <span>Gen</span>
           <select
@@ -93,7 +93,11 @@ export function ListControls({
             type="button"
             className="type-chip"
             aria-pressed={controls.type === t}
-            style={controls.type === t ? { background: TYPE_COLORS[t], color: '#fff' } : undefined}
+            style={
+              controls.type === t
+                ? { background: TYPE_COLORS[t], color: typeTextColor(t), borderColor: 'transparent' }
+                : undefined
+            }
             onClick={() => setType(controls.type === t ? null : t)}
           >
             {t}

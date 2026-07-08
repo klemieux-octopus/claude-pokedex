@@ -1,5 +1,5 @@
 import type { SpeciesIndexEntry } from './data/types'
-import { typeColor } from './ui/typeColors'
+import { typeColor, typeTextColor } from './ui/typeColors'
 import { dexLabel } from './ui/format'
 import { pickArtwork } from './ui/artwork'
 
@@ -39,7 +39,11 @@ export function SpeciesList({ species, selectedDex, shiny, onSelect }: Props) {
             <span className="species-name">{s.name}</span>
             <span className="species-types">
               {s.types.map((t) => (
-                <span key={t} className="type-badge" style={{ background: typeColor(t) }}>
+                <span
+                  key={t}
+                  className="type-badge"
+                  style={{ background: typeColor(t), color: typeTextColor(t) }}
+                >
                   {t}
                 </span>
               ))}
