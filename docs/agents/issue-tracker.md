@@ -25,6 +25,29 @@ When set to `yes`, PRs run through the same labels and states as issues, using t
 
 GitHub shares one number space across issues and PRs, so a bare `#42` may be either — resolve with `gh pr view 42` and fall back to `gh issue view 42`.
 
+## Kanban board
+
+Work is tracked on a GitHub Project board: **Project #3** — <https://github.com/users/klemieux-octopus/projects/3>. Every issue is an item on it, with a single-select **Status** field.
+
+Status lifecycle (left to right):
+
+| Column | Meaning |
+| ------------- | ------- |
+| `Backlog` | Not yet ready to pick up (unspecified, or blocked by an open ticket). |
+| `Ready` | Fully specified and unblocked — an agent may take it (see the Task workflow rules in `CLAUDE.md`). |
+| `In progress` | Started; assigned to the owner. |
+| `In review` | Work is done and its pull request is open. |
+| `Done` | Merged / closed. |
+
+**Move a card's status** (needs the `project` gh scope — `gh auth refresh -s project`):
+
+```
+gh project item-edit --project-id <PROJECT_ID> --id <ITEM_ID> \
+  --field-id <STATUS_FIELD_ID> --single-select-option-id <OPTION_ID>
+```
+
+Look up the ids with `gh project view 3 --owner klemieux-octopus --format json` (project id), `gh project field-list 3 --owner klemieux-octopus --format json` (Status field id + per-column option ids), and `gh project item-list 3 --owner klemieux-octopus --format json` (item ids, keyed by issue number). For this board: project `PVT_kwHOEeqboM4Bc1n6`, Status field `PVTSSF_lAHOEeqboM4Bc1n6zhXbgsE`, options Backlog `f75ad846` / Ready `61e4505c` / In progress `47fc9ee4` / In review `df73e18b` / Done `98236657`. (Re-query if the board is edited — ids change.)
+
 ## When a skill says "publish to the issue tracker"
 
 Create a GitHub issue.
