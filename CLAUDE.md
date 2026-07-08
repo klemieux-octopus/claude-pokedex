@@ -64,7 +64,7 @@ Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agent
 Rules for working tasks on the project kanban board ([GitHub Project #3](https://github.com/users/klemieux-octopus/projects/3) — columns and the `gh` commands to move cards are documented in `docs/agents/issue-tracker.md`):
 
 - **Never push to `main`, and never merge a PR on your own initiative.** You push only to feature branches. When a PR is ready, **propose the merge** (say it's ready and offer) and **flag any merge conflicts** — the repo owner reviews the code and decides. Merge only a specific PR the owner has **explicitly told you to merge**; absent that explicit go-ahead you never merge (the owner may merge it themselves and tell you).
-- **When you start a task**, move it to the **In progress** column and assign it to me (the repo owner).
+- **Putting the issue in the right state is the first step — before any work.** When you start a task, *first* move its issue to the **In progress** column and assign it to me (the repo owner); only then begin the work.
 - **Before taking any task that is not in the Ready column, or is already assigned to someone else**, check with me first — do not start work on it until I confirm.
 - **All changes ship as a pull request** — never commit directly to `main`. Stage the work on a branch and open a PR.
 - **Every PR to `main` must be linked to an issue** for tracking — reference it in the PR body (`Closes #<n>` for ticketed work, or `Related: #<n>`). If a change has no natural ticket, create a tracking issue first.
