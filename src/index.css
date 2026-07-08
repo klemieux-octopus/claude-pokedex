@@ -250,3 +250,45 @@ body {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
+
+/* ---- volet de détail — squelette (#41) ---- */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-hero {
+  align-self: center;
+}
+
+.detail-hero img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.detail-hero--empty {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.detail-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.detail-num {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.detail-name {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  text-transform: capitalize;
+}
