@@ -1,0 +1,28 @@
+// Original placeholder creatures (not franchise characters) for the Pokédex UI kit.
+// Consumers swap this for their own dataset; sprite is null → neutral silhouette slot.
+window.DEX = [
+  { number: 1,  name: 'Sprigleaf',  types: ['grass'],            hp: 60,  atk: 52,  def: 58,  spd: 62,
+    flavor: 'A seed sprouts on its back at birth and grows with it, drawing energy from sunlight.' },
+  { number: 2,  name: 'Emberpup',   types: ['fire'],             hp: 55,  atk: 68,  def: 44,  spd: 74,
+    flavor: 'The flame on its tail measures its mood. It flares brightly when the pup is excited.' },
+  { number: 3,  name: 'Tidefin',    types: ['water'],            hp: 68,  atk: 50,  def: 64,  spd: 58,
+    flavor: 'Rides coastal currents at dawn. Its fins glow faintly in cold, deep water.' },
+  { number: 4,  name: 'Voltmouse',  types: ['electric'],         hp: 40,  atk: 60,  def: 40,  spd: 96,
+    flavor: 'Stores static in its cheeks. A startled Voltmouse can light a small room.' },
+  { number: 5,  name: 'Pebblox',    types: ['rock', 'ground'],   hp: 82,  atk: 90,  def: 110, spd: 28,
+    flavor: 'Its hide is layered stone. It sheds a pebble whenever it takes a heavy hit.' },
+  { number: 6,  name: 'Emberwing',  types: ['fire', 'flying'],   hp: 78,  atk: 104, def: 78,  spd: 100,
+    flavor: 'Soars above ridgelines at dusk, trailing sparks. Prefers strong opponents.' },
+  { number: 7,  name: 'Zephyrling', types: ['flying', 'normal'], hp: 45,  atk: 40,  def: 40,  spd: 88,
+    flavor: 'Weighs almost nothing. Whole flocks drift on warm afternoon thermals.' },
+  { number: 8,  name: 'Mystichor',  types: ['psychic'],          hp: 72,  atk: 58,  def: 62,  spd: 84,
+    flavor: 'Hums a low tone that calms nearby creatures. Its eyes never fully close.' },
+  { number: 9,  name: 'Frostkit',   types: ['ice'],              hp: 50,  atk: 48,  def: 66,  spd: 54,
+    flavor: 'Breathes a fine frost. It nests inside snowbanks through the cold months.' },
+  { number: 10, name: 'Toxiflit',   types: ['bug', 'poison'],    hp: 58,  atk: 63,  def: 52,  spd: 90,
+    flavor: 'Dust from its wings can numb. It flits between night flowers in silence.' },
+  { number: 11, name: 'Dracembers', types: ['dragon', 'fire'],   hp: 96,  atk: 118, def: 88,  spd: 82,
+    flavor: 'An old-line dragon. The embers in its throat never go out, even in rain.' },
+  { number: 12, name: 'Aquagon',    types: ['water', 'dragon'],  hp: 92,  atk: 88,  def: 90,  spd: 70,
+    flavor: 'Coils in deep trenches. Sailors take its distant song as a storm warning.' },
+];

@@ -1,6 +1,8 @@
 import { ListControls } from './ListControls'
 import { SpeciesList } from './SpeciesList'
 import { DetailPane } from './DetailPane'
+import { LED } from './ui/components/LED'
+import { ThemeToggle } from './ui/components/ThemeToggle'
 import { useSpeciesIndex } from './data/useSpeciesIndex'
 import { useSpeciesDetail } from './data/useSpeciesDetail'
 import { useSelectedDex } from './hooks/useSelectedDex'
@@ -23,8 +25,18 @@ export default function App() {
   return (
     <div className="app">
       <header className="masthead">
-        <span className="dot" aria-hidden="true" />
+        <span className="masthead-lens">
+          <LED color="blue" size={40} />
+        </span>
+        <span className="masthead-leds">
+          <LED color="red" size={11} />
+          <LED color="yellow" size={11} />
+          <LED color="green" size={11} />
+        </span>
         <h1>Pokédex</h1>
+        <div className="masthead-actions">
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="browser">

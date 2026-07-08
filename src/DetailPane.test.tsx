@@ -99,7 +99,7 @@ describe('DetailPane — contenu complet (#42)', () => {
   it('remplit les barres de la couleur du type primaire', () => {
     const { container } = renderCz()
     const fill = container.querySelector('.stat-fill') as HTMLElement
-    expect(fill).toHaveStyle({ background: '#EE8130' }) // fire
+    expect(fill).toHaveStyle({ background: '#F0803C' }) // fire (palette design system)
   })
 
   it('liste toutes les capacités et tague les cachées « Caché »', () => {

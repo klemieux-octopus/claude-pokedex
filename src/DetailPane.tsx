@@ -1,7 +1,10 @@
 import type { SpeciesDetail, Stats, Variety } from './data/types'
 import { dexLabel, metric } from './ui/format'
-import { typeColor, typeTextColor } from './ui/typeColors'
+import { typeColor } from './ui/typeColors'
 import { pickArtwork } from './ui/artwork'
+import { TypeBadge } from './ui/components/TypeBadge'
+import { StatBar } from './ui/components/StatBar'
+import { Badge } from './ui/components/Badge'
 
 // Échelle fixe des barres de stat : la stat de base maximale du jeu. Une barre
 // pleine = 255, pour que la longueur soit comparable d'un Pokémon à l'autre.
@@ -29,9 +32,9 @@ interface Props {
   shinyHeroUrl: string | null
 }
 
-// Volet de détail — contenu complet (#42) : héro + nom + numéro dex + types,
-// puis flavor text, stats de base, capacités et physique. Présentation pure sur
-// la variété par défaut ; aucune récupération de données ici.
+// Volet de détail — contenu complet (#42), habillé avec le design system (#45) :
+// héro dans un cadre teinté du type, TypeBadge, StatBar et Badge. Présentation
+// pure sur la variété par défaut ; aucune récupération de données ici.
 export function DetailPane({ detail, shiny, shinyHeroUrl }: Props) {
   const variety = defaultVariety(detail)
   const hero = pickArtwork(shiny, shinyHeroUrl, variety.sprites.officialArtwork)
@@ -42,9 +45,14 @@ export function DetailPane({ detail, shiny, shinyHeroUrl }: Props) {
 
   return (
     <article className="detail">
-      <div className="detail-hero">
+      <div
+        className="detail-hero"
+        style={{
+          background: `linear-gradient(160deg, color-mix(in srgb, ${primary} 45%, white), color-mix(in srgb, ${primary} 12%, white))`,
+        }}
+      >
         {hero ? (
-          <img src={hero} alt={detail.name} width={180} height={180} />
+          <img src={hero} alt={detail.name} width={200} height={200} />
         ) : (
           <div className="detail-hero--empty" aria-hidden="true" />
         )}
@@ -53,46 +61,26 @@ export function DetailPane({ detail, shiny, shinyHeroUrl }: Props) {
       <div className="detail-head">
         <span className="detail-num num">{dexLabel(detail.dex)}</span>
         <h2 className="detail-name">{detail.name}</h2>
-        {rarity && <span className="detail-rarity">{rarity}</span>}
+        {rarity && (
+          <Badge tone={detail.isMythical ? 'accent' : 'brand'} className="detail-rarity">
+            {rarity}
+          </Badge>
+        )}
       </div>
 
       <div className="types">
         {variety.types.map((t) => (
-          <span
-            key={t}
-            className="type-badge"
-            style={{ background: typeColor(t), color: typeTextColor(t) }}
-          >
-            {t}
-          </span>
+          <TypeBadge key={t} type={t} size="md" />
         ))}
       </div>
 
       <p className="detail-flavor">{detail.flavorText}</p>
 
       <section className="stats" aria-label="Statistiques de base">
-        {STAT_ROWS.map(([key, label]) => {
-          const value = variety.stats[key]
-          return (
-            <div className="stat-row" key={key}>
-              <span className="stat-label">{label}</span>
-              <div
-                className="stat-bar"
-                role="progressbar"
-                aria-label={label}
-                aria-valuenow={value}
-                aria-valuemin={0}
-                aria-valuemax={STAT_MAX}
-              >
-                <div
-                  className="stat-fill"
-                  style={{ width: `${(value / STAT_MAX) * 100}%`, background: primary }}
-                />
-              </div>
-              <span className="stat-val num">{value}</span>
-            </div>
-          )
-        })}
+        <h3 className="detail-section-title">Stats de base</h3>
+        {STAT_ROWS.map(([key, label]) => (
+          <StatBar key={key} label={label} value={variety.stats[key]} max={STAT_MAX} color={primary} />
+        ))}
         <div className="stat-row stat-row--total">
           <span className="stat-label">Total</span>
           <span className="stat-val num">{total}</span>
@@ -105,7 +93,11 @@ export function DetailPane({ detail, shiny, shinyHeroUrl }: Props) {
           {variety.abilities.map((a) => (
             <li key={a.name} className="ability">
               <span className="ability-name">{a.name}</span>
-              {a.isHidden && <span className="ability-hidden">Caché</span>}
+              {a.isHidden && (
+                <Badge tone="neutral" className="ability-hidden">
+                  Caché
+                </Badge>
+              )}
             </li>
           ))}
         </ul>
@@ -114,11 +106,11 @@ export function DetailPane({ detail, shiny, shinyHeroUrl }: Props) {
       <dl className="physique">
         <div>
           <dt>Taille</dt>
-          <dd>{metric(variety.height, 'm')}</dd>
+          <dd className="num">{metric(variety.height, 'm')}</dd>
         </div>
         <div>
           <dt>Poids</dt>
-          <dd>{metric(variety.weight, 'kg')}</dd>
+          <dd className="num">{metric(variety.weight, 'kg')}</dd>
         </div>
         <div>
           <dt>Génération</dt>

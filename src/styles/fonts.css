@@ -1,0 +1,45 @@
+/* Polices du design system — auto-hébergées (sous-ensemble latin, OFL), aucun
+   CDN tiers. Fredoka et Space Grotesk sont des polices variables : un seul
+   fichier couvre toute la plage de graisses. Voir #45 (remplace l'@import
+   Google Fonts du bundle). Les .woff2 vivent dans ../assets/fonts/ ; Vite les
+   empaquette avec le bon base path. */
+
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../assets/fonts/fredoka.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../assets/fonts/space-grotesk.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/space-mono-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/space-mono-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/press-start-2p-400.woff2') format('woff2');
+}

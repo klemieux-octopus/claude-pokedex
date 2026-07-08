@@ -1,0 +1,71 @@
+/* ── Colors ──────────────────────────────────────────────────────────────── */
+:root {
+  /* ── Brand: the Pokédex shell ── */
+  --poke-red:        #D3222A;  /* iconic device red */
+  --poke-red-deep:   #A81419;  /* pressed / shadow */
+  --poke-red-hi:     #E8464D;  /* highlight rim */
+  --poke-blue:       #2C74B3;  /* big round lens LED */
+  --poke-blue-hi:    #6FB6FF;  /* lens glint */
+
+  /* ── LED indicator lights ── */
+  --led-red:     #F0453B;
+  --led-yellow:  #FFCB3D;
+  --led-green:   #38C172;
+  --led-blue:    #3AA0FF;
+
+  /* ── Neutrals: shell casing + LCD screen ── */
+  --ink-900: #17181C;  /* charcoal shell seams, text */
+  --ink-700: #2B2D34;
+  --ink-500: #565A66;
+  --ink-300: #9AA0AE;
+  --ink-200: #C7CCD6;
+  --ink-100: #E4E7ED;
+  --paper:   #F5F6EF;  /* warm LCD off-white */
+  --paper-2: #E7EAE0;
+  --lcd:     #DCE6D5;  /* classic green-tinted LCD glass */
+  --lcd-line:#C3D2B8;
+  --white:   #FFFFFF;
+
+  /* ── Pokémon TYPE palette (domain-standard) ── */
+  --type-normal:   #9199A2;
+  --type-fire:     #F0803C;
+  --type-water:    #4C90D5;
+  --type-grass:    #63BB5B;
+  --type-electric: #F3D23B;
+  --type-ice:      #74CEC0;
+  --type-fighting: #CE4265;
+  --type-poison:   #AB6AC8;
+  --type-ground:   #D97845;
+  --type-flying:   #8FA9DE;
+  --type-psychic:  #F85888;
+  --type-bug:      #90C12C;
+  --type-rock:     #C5B78C;
+  --type-ghost:    #5269AC;
+  --type-dragon:   #0A6DC4;
+  --type-dark:     #5A5366;
+  --type-steel:    #5A8EA1;
+  --type-fairy:    #EC8FE6;
+
+  /* ── Semantic aliases ── */
+  --brand:              var(--poke-red);
+  --brand-pressed:      var(--poke-red-deep);
+  --accent:             var(--poke-blue);
+
+  --text-strong:        var(--ink-900);
+  --text-body:          var(--ink-700);
+  --text-muted:         var(--ink-500);
+  --text-on-brand:      var(--white);
+  --text-on-screen:     #33402F;   /* dark green ink on LCD */
+
+  --surface-app:        var(--ink-100);
+  --surface-card:       var(--white);
+  --surface-screen:     var(--lcd);
+  --surface-shell:      var(--poke-red);
+  --surface-inset:      var(--paper);
+
+  --border-hairline:    var(--ink-200);
+  --border-screen:      var(--ink-900);
+  --border-strong:      var(--ink-900);
+
+  --focus-ring:         var(--poke-blue-hi);
+}
