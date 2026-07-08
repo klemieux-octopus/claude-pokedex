@@ -189,6 +189,7 @@ describe('buildIndexEntry', () => {
       generation: 1,
       statTotal: 210, // 10+20+30+40+50+60
       thumbnail: 'char-art.png',
+      thumbnailShiny: null, // fixture has front_shiny: null
     })
   })
 })

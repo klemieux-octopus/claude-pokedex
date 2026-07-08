@@ -10,6 +10,8 @@ export interface SpeciesIndexEntry {
   generation: number
   statTotal: number
   thumbnail: string | null
+  /** Official-artwork shiny URL for the shiny toggle; null when absent. */
+  thumbnailShiny: string | null
 }
 
 export interface Stats {

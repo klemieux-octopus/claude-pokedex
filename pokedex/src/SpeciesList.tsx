@@ -5,13 +5,16 @@ import { dexLabel } from './ui/format'
 interface Props {
   species: SpeciesIndexEntry[]
   selectedDex: number | null
+  shiny: boolean
   onSelect: (dex: number) => void
 }
 
-export function SpeciesList({ species, selectedDex, onSelect }: Props) {
+export function SpeciesList({ species, selectedDex, shiny, onSelect }: Props) {
   return (
     <ul className="species-list" aria-label="Pokémon">
-      {species.map((s) => (
+      {species.map((s) => {
+        const thumb = shiny ? (s.thumbnailShiny ?? s.thumbnail) : s.thumbnail
+        return (
         <li key={s.dex}>
           <button
             type="button"
@@ -19,10 +22,10 @@ export function SpeciesList({ species, selectedDex, onSelect }: Props) {
             aria-current={s.dex === selectedDex ? 'true' : undefined}
             onClick={() => onSelect(s.dex)}
           >
-            {s.thumbnail ? (
+            {thumb ? (
               <img
                 className="species-thumb"
-                src={s.thumbnail}
+                src={thumb}
                 alt=""
                 width={48}
                 height={48}
@@ -42,7 +45,8 @@ export function SpeciesList({ species, selectedDex, onSelect }: Props) {
             </span>
           </button>
         </li>
-      ))}
+        )
+      })}
     </ul>
   )
 }

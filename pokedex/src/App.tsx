@@ -1,11 +1,18 @@
+import { ListControls } from './ListControls'
 import { SpeciesList } from './SpeciesList'
 import { useSpeciesIndex } from './data/useSpeciesIndex'
 import { useSelectedDex } from './hooks/useSelectedDex'
+import { useListControls } from './hooks/useListControls'
+import { filterAndSort } from './data/filterSort'
 import { dexLabel } from './ui/format'
 
 export default function App() {
   const index = useSpeciesIndex()
   const [selectedDex, setSelectedDex] = useSelectedDex()
+  const listControls = useListControls()
+
+  const all = index.status === 'ready' ? index.species : []
+  const visible = filterAndSort(all, listControls.controls)
 
   return (
     <div className="app">
@@ -23,11 +30,19 @@ export default function App() {
             </p>
           )}
           {index.status === 'ready' && (
-            <SpeciesList
-              species={index.species}
-              selectedDex={selectedDex}
-              onSelect={setSelectedDex}
-            />
+            <>
+              <ListControls {...listControls} matchCount={visible.length} total={all.length} />
+              {visible.length === 0 ? (
+                <p className="notice">No Pokémon match your filters.</p>
+              ) : (
+                <SpeciesList
+                  species={visible}
+                  selectedDex={selectedDex}
+                  shiny={listControls.controls.shiny}
+                  onSelect={setSelectedDex}
+                />
+              )}
+            </>
           )}
         </section>
 
