@@ -1,6 +1,9 @@
 import { hasActiveControls, type SortKey } from './data/filterSort'
 import type { ListControlsApi } from './hooks/useListControls'
 import { TYPE_COLORS, typeTextColor } from './ui/typeColors'
+import { SearchInput } from './ui/components/SearchInput'
+import { Toggle } from './ui/components/Toggle'
+import { Button } from './ui/components/Button'
 
 const TYPES = Object.keys(TYPE_COLORS)
 const GENERATIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -23,11 +26,12 @@ export function ListControls({
 }: Props) {
   return (
     <div className="controls">
-      <input
+      <SearchInput
         type="search"
-        className="control-search"
         placeholder="Search name or №"
         aria-label="Search Pokémon by name or number"
+        icon={<span aria-hidden="true">⌕</span>}
+        style={{ width: '100%' }}
         value={controls.q}
         onChange={(e) => setQuery(e.target.value)}
       />
@@ -62,19 +66,12 @@ export function ListControls({
           </select>
         </label>
 
-        <label className="control-toggle">
-          <input
-            type="checkbox"
-            checked={controls.shiny}
-            onChange={(e) => setShiny(e.target.checked)}
-          />
-          Shiny
-        </label>
+        <Toggle checked={controls.shiny} onChange={setShiny} label="Shiny" />
 
         {hasActiveControls(controls) && (
-          <button type="button" className="control-clear" onClick={clear}>
+          <Button type="button" variant="neutral" size="sm" className="control-clear" onClick={clear}>
             Clear
-          </button>
+          </Button>
         )}
       </div>
 

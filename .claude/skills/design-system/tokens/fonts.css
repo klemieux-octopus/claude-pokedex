@@ -1,0 +1,10 @@
+/* ── Webfonts ──────────────────────────────────────────────────────────────
+   Loaded from Google Fonts (no source font files were provided).
+   SUBSTITUTION FLAG — see readme.md. Swap the @import for local @font-face
+   if brand fonts become available.
+     · Fredoka        → rounded modern display (headings, poke-names)
+     · Space Grotesk  → modern UI / body / controls
+     · Space Mono     → numeric + tabular (pokedex numbers, stats)
+     · Press Start 2P → pixel-retro accent (tiny labels, LCD glyphs) — used sparingly
+──────────────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Press+Start+2P&display=swap');

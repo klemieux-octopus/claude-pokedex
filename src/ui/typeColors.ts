@@ -1,25 +1,26 @@
-// Canonical Pokémon type colours, used for type badges. The full "Pokédex
-// Device" visual identity (light/dark tokens, etc.) is ticket #17; this is the
-// minimum needed to render coloured type badges in the list.
+// Couleurs de type Pokémon, alignées sur la palette `--type-*` du design system
+// (#45 ; voir src/styles/tokens.css et le skill design-system). Valeurs en dur
+// ici car elles alimentent des styles inline / la couleur de remplissage des
+// StatBar ; elles ne varient pas entre thèmes clair et sombre (types = vifs).
 export const TYPE_COLORS: Record<string, string> = {
-  normal: '#A8A77A',
-  fire: '#EE8130',
-  water: '#6390F0',
-  electric: '#F7D02C',
-  grass: '#7AC74C',
-  ice: '#96D9D6',
-  fighting: '#C22E28',
-  poison: '#A33EA1',
-  ground: '#E2BF65',
-  flying: '#A98FF3',
-  psychic: '#F95587',
-  bug: '#A6B91A',
-  rock: '#B6A136',
-  ghost: '#735797',
-  dragon: '#6F35FC',
-  dark: '#705746',
-  steel: '#B7B7CE',
-  fairy: '#D685AD',
+  normal: '#9199A2',
+  fire: '#F0803C',
+  water: '#4C90D5',
+  electric: '#F3D23B',
+  grass: '#63BB5B',
+  ice: '#74CEC0',
+  fighting: '#CE4265',
+  poison: '#AB6AC8',
+  ground: '#D97845',
+  flying: '#8FA9DE',
+  psychic: '#F85888',
+  bug: '#90C12C',
+  rock: '#C5B78C',
+  ghost: '#5269AC',
+  dragon: '#0A6DC4',
+  dark: '#5A5366',
+  steel: '#5A8EA1',
+  fairy: '#EC8FE6',
 }
 
 export function typeColor(type: string): string {

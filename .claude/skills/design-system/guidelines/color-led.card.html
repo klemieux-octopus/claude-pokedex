@@ -1,0 +1,13 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="LED lights" subtitle="Status indicator lamps with glow" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;font-family:var(--font-ui);background:var(--ink-900);padding:24px;display:flex;gap:34px;align-items:center}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .dot{width:34px;height:34px;border-radius:999px;border:2px solid rgba(0,0,0,.5)}
+  .n{font:var(--w-medium) 12px/1 var(--font-ui);color:var(--ink-200);text-transform:uppercase;letter-spacing:.1em}
+</style></head><body>
+  <div class="cell"><span class="dot" style="background:radial-gradient(circle at 32% 28%,#fff,var(--led-red) 62%);box-shadow:var(--led-glow-red)"></span><span class="n">Red</span></div>
+  <div class="cell"><span class="dot" style="background:radial-gradient(circle at 32% 28%,#fff,var(--led-yellow) 62%);box-shadow:0 0 10px rgba(255,203,61,.8)"></span><span class="n">Yellow</span></div>
+  <div class="cell"><span class="dot" style="background:radial-gradient(circle at 32% 28%,#fff,var(--led-green) 62%);box-shadow:var(--led-glow-green)"></span><span class="n">Green</span></div>
+  <div class="cell"><span class="dot" style="width:48px;height:48px;background:radial-gradient(circle at 32% 28%,#fff,var(--led-blue) 62%);box-shadow:var(--led-glow-blue)"></span><span class="n">Lens</span></div>
+</body></html>

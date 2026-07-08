@@ -1,0 +1,205 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tokens du design system Pokédex — vendorés depuis le bundle
+   (.claude/skills/design-system/tokens/*.css) pour un usage runtime dans l'app.
+   Source de vérité du design : le skill ; cette copie doit rester alignée.
+   Ajout propre à l'app : les thèmes clair/sombre en fin de fichier (#45).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Colors ──────────────────────────────────────────────────────────────── */
+:root {
+  /* ── Brand: the Pokédex shell ── */
+  --poke-red:        #D3222A;
+  --poke-red-deep:   #A81419;
+  --poke-red-hi:     #E8464D;
+  --poke-blue:       #2C74B3;
+  --poke-blue-hi:    #6FB6FF;
+
+  /* ── LED indicator lights ── */
+  --led-red:     #F0453B;
+  --led-yellow:  #FFCB3D;
+  --led-green:   #38C172;
+  --led-blue:    #3AA0FF;
+
+  /* ── Neutrals: shell casing + LCD screen ── */
+  --ink-900: #17181C;
+  --ink-700: #2B2D34;
+  --ink-500: #565A66;
+  --ink-300: #9AA0AE;
+  --ink-200: #C7CCD6;
+  --ink-100: #E4E7ED;
+  --paper:   #F5F6EF;
+  --paper-2: #E7EAE0;
+  --lcd:     #DCE6D5;
+  --lcd-line:#C3D2B8;
+  --white:   #FFFFFF;
+
+  /* ── Pokémon TYPE palette (domain-standard) ── */
+  --type-normal:   #9199A2;
+  --type-fire:     #F0803C;
+  --type-water:    #4C90D5;
+  --type-grass:    #63BB5B;
+  --type-electric: #F3D23B;
+  --type-ice:      #74CEC0;
+  --type-fighting: #CE4265;
+  --type-poison:   #AB6AC8;
+  --type-ground:   #D97845;
+  --type-flying:   #8FA9DE;
+  --type-psychic:  #F85888;
+  --type-bug:      #90C12C;
+  --type-rock:     #C5B78C;
+  --type-ghost:    #5269AC;
+  --type-dragon:   #0A6DC4;
+  --type-dark:     #5A5366;
+  --type-steel:    #5A8EA1;
+  --type-fairy:    #EC8FE6;
+
+  /* ── Semantic aliases (light theme = defaults) ── */
+  --brand:              var(--poke-red);
+  --brand-pressed:      var(--poke-red-deep);
+  --accent:             var(--poke-blue);
+
+  --text-strong:        var(--ink-900);
+  --text-body:          var(--ink-700);
+  --text-muted:         var(--ink-500);
+  --text-on-brand:      var(--white);
+  --text-on-screen:     #33402F;
+
+  --surface-app:        var(--ink-100);
+  --surface-card:       var(--white);
+  --surface-screen:     var(--lcd);
+  --surface-shell:      var(--poke-red);
+  --surface-inset:      var(--paper);
+
+  --border-hairline:    var(--ink-200);
+  --border-screen:      var(--ink-900);
+  --border-strong:      var(--ink-900);
+
+  --focus-ring:         var(--poke-blue-hi);
+
+  /* ── Typography ── */
+  --font-display: 'Fredoka', 'Trebuchet MS', system-ui, sans-serif;
+  --font-ui:      'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --font-pixel:   'Press Start 2P', 'Space Mono', monospace;
+
+  --w-regular: 400;
+  --w-medium:  500;
+  --w-semibold:600;
+  --w-bold:    700;
+
+  --fs-pixel:   10px;
+  --fs-caption: 12px;
+  --fs-small:   14px;
+  --fs-body:    16px;
+  --fs-lg:      18px;
+  --fs-h4:      22px;
+  --fs-h3:      28px;
+  --fs-h2:      38px;
+  --fs-h1:      52px;
+  --fs-display: 72px;
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.2;
+  --lh-normal: 1.5;
+
+  --ls-pixel:  0.06em;
+  --ls-caps:   0.14em;
+  --ls-tight: -0.02em;
+
+  /* ── Spacing & layout — 4px base rhythm ── */
+  --sp-0:  0;
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+
+  --r-sm:   6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 999px;
+  --r-screen: 14px;
+  --r-shell:  28px;
+
+  --bw-hair: 1px;
+  --bw-mid:  2px;
+  --bw-bold: 3px;
+
+  --w-content: 1120px;
+  --w-device:  380px;
+
+  /* ── Effects ── */
+  --shadow-1: 0 1px 2px rgba(23,24,28,0.08), 0 1px 1px rgba(23,24,28,0.04);
+  --shadow-2: 0 4px 12px rgba(23,24,28,0.10), 0 2px 4px rgba(23,24,28,0.06);
+  --shadow-3: 0 12px 32px rgba(23,24,28,0.16), 0 4px 8px rgba(23,24,28,0.08);
+
+  --emboss:  inset 0 2px 0 rgba(255,255,255,0.35), inset 0 -3px 6px rgba(0,0,0,0.22);
+  --deboss:  inset 0 3px 8px rgba(0,0,0,0.30), inset 0 -1px 0 rgba(255,255,255,0.12);
+
+  --screen-inset: inset 0 0 0 3px #17181C, inset 0 3px 10px rgba(0,0,0,0.28);
+  --screen-glow:  0 0 0 1px rgba(255,255,255,0.4);
+
+  --led-glow-red:   0 0 8px rgba(240,69,59,0.8);
+  --led-glow-green: 0 0 8px rgba(56,193,114,0.8);
+  --led-glow-blue:  0 0 12px rgba(58,160,255,0.9);
+
+  --ring: 0 0 0 3px rgba(111,182,255,0.55);
+
+  --ease-pop:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast:  120ms;
+  --dur-base:  200ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Thèmes clair / sombre (#45 — reprend l'exigence de #17)
+   Défaut = clair. Le sombre s'active soit par préférence OS
+   (prefers-color-scheme: dark) tant qu'aucun choix manuel « light » n'est posé,
+   soit explicitement via [data-theme="dark"]. Les couleurs de type restent
+   vives (pas d'inversion naïve) : seules les surfaces/textes/bordures changent.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Surcharges sombres. Le bloc est volontairement dupliqué entre la media query
+   (défaut OS) et le sélecteur [data-theme='dark'] (choix manuel) : en CSS pur,
+   sans préprocesseur, on ne peut pas factoriser un jeu de custom properties
+   partagé entre deux sélecteurs distincts. Garder les deux blocs synchronisés. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --text-strong:     #F5F6EF;
+    --text-body:       #D2D6DE;
+    --text-muted:      #9AA0AE;
+
+    --surface-app:     #111216;
+    --surface-card:    #212329;
+    --surface-inset:   #191A1F;
+    --surface-screen:  #223026;   /* LCD assombri, garde la teinte verte */
+
+    --border-hairline: #34373F;
+    --border-strong:   #F5F6EF;
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --text-strong:     #F5F6EF;
+  --text-body:       #D2D6DE;
+  --text-muted:      #9AA0AE;
+
+  --surface-app:     #111216;
+  --surface-card:    #212329;
+  --surface-inset:   #191A1F;
+  --surface-screen:  #223026;
+
+  --border-hairline: #34373F;
+  --border-strong:   #F5F6EF;
+
+  color-scheme: dark;
+}
