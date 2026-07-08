@@ -93,6 +93,7 @@ describe('transform against recorded PokéAPI fixtures', () => {
         generation: 1,
         statTotal: 534,
         thumbnail: expect.stringContaining('official-artwork'),
+        thumbnailShiny: expect.stringContaining('official-artwork/shiny'),
       })
     })
   })

@@ -92,6 +92,10 @@ function officialArtwork(p: RawPokemon): string | null {
   return p.sprites.other?.['official-artwork']?.front_default ?? null
 }
 
+function officialArtworkShiny(p: RawPokemon): string | null {
+  return p.sprites.other?.['official-artwork']?.front_shiny ?? null
+}
+
 function mapSprites(p: RawPokemon): Sprites {
   return {
     default: p.sprites.front_default,
@@ -137,6 +141,7 @@ export function buildIndexEntry(
     generation: generationNumber(species.generation.name),
     statTotal: statTotal(mapStats(defaultPokemon)),
     thumbnail: officialArtwork(defaultPokemon),
+    thumbnailShiny: officialArtworkShiny(defaultPokemon),
   }
 }
 
