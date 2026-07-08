@@ -202,7 +202,10 @@ Rules (from `CLAUDE.md`):
 - **Every PR to `main` must be linked to an issue.** Reference it in the PR body — `Closes #<n>` for
   ticketed work, or `Related: #<n>`. No natural ticket? Create a tracking issue first.
 - **Sub-issues never merge into `main` directly** — only into their parent's branch.
-- Every sub-issue is claimed by whoever claimed the parent issue.
+- Every sub-issue is claimed by whoever claimed the parent issue. **On creation, each sub-issue is
+  immediately assigned to the owner and added to the board** — set to *Ready* if specified and
+  unblocked, *Backlog* if blocked by an open ticket, *In progress* only once work starts. Never
+  leave a newly created sub-issue unassigned or off the board.
 - Before starting a task **not in the Ready column, or already assigned to someone else**, check with
   the owner first.
 
