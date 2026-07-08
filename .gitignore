@@ -1,0 +1,3 @@
+# We work exclusively with Claude Code, which discovers skills in .claude/skills/.
+# The vendor-neutral .agents/skills/ copy is redundant and not tracked here.
+.agents/
