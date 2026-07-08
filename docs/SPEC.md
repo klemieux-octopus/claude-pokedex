@@ -1,6 +1,6 @@
 # Spec — Pokédex web app
 
-> Status: **ready for agent**. Synthesised from the wayfinder map [Pokédex web app — buildable spec](https://github.com/klemieux-octopus/knowledge-base/issues/1) (decisions #2–#6). Build lives in `pokedex/` in this repo.
+> Status: **ready for agent**. Synthesised from the wayfinder map [Pokédex web app — buildable spec](https://github.com/klemieux-octopus/claude-pokedex/issues/1) (decisions #2–#6). Build lives in `pokedex/` in this repo.
 
 ## Problem Statement
 

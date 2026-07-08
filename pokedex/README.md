@@ -22,7 +22,7 @@ npm run preview    # serve the production build locally
 
 Pushes to `main` that touch this app trigger the
 [deploy workflow](../.github/workflows/pokedex-deploy.yml), which builds and
-publishes `dist/` to GitHub Pages at `https://<owner>.github.io/knowledge-base/`.
-The Vite `base` is `/knowledge-base/`; a `public/404.html` fallback re-routes
+publishes `dist/` to GitHub Pages at `https://<owner>.github.io/claude-pokedex/`.
+The Vite `base` is `/claude-pokedex/`; a `public/404.html` fallback re-routes
 deep links back into the SPA. Requires Pages to be enabled with **Source:
 GitHub Actions** in the repository settings.
