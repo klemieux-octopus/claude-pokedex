@@ -63,8 +63,10 @@ Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agent
 
 Rules for working tasks on the project kanban board ([GitHub Project #3](https://github.com/users/klemieux-octopus/projects/3) — columns and the `gh` commands to move cards are documented in `docs/agents/issue-tracker.md`):
 
-- **NEVER push to `main` or merge a pull request yourself — under no circumstances, even if asked or if the PR is clean.** Every merge to `main` is the repo owner's decision and is performed by the owner. Your work always ends at opening or updating a PR; you push only to feature branches, never to `main`.
+- **Never push to `main`, and never merge a PR on your own initiative.** You push only to feature branches. When a PR is ready, **propose the merge** (say it's ready and offer) and **flag any merge conflicts** — the repo owner reviews the code and decides. Merge only a specific PR the owner has **explicitly told you to merge**; absent that explicit go-ahead you never merge (the owner may merge it themselves and tell you).
 - **When you start a task**, move it to the **In progress** column and assign it to me (the repo owner).
 - **Before taking any task that is not in the Ready column, or is already assigned to someone else**, check with me first — do not start work on it until I confirm.
 - **All changes ship as a pull request** — never commit directly to `main`. Stage the work on a branch and open a PR.
+- **Every PR to `main` must be linked to an issue** for tracking — reference it in the PR body (`Closes #<n>` for ticketed work, or `Related: #<n>`). If a change has no natural ticket, create a tracking issue first.
+- **Sub-issues merge into their parent issue's branch, never into `main` directly.** For a parent issue that has sub-issues: cut one long-lived **parent branch** off `main`; work each sub-issue on its own branch off the parent branch and merge it back into the parent branch (push to the parent branch freely). When **all** sub-issues are done, open a single PR from the parent branch to `main`. Every sub-issue is claimed by whoever claimed the parent issue.
 - **When a task's work is ready for review**, open its pull request and move the ticket to the **In review** column on the kanban board.
