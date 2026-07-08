@@ -54,13 +54,13 @@ are reviewed for content and links; app changes must pass typecheck, tests, and 
 └─────────────┘
     │
     ▼
-┌─────────────┐
-│  REVIEW     │  /code-review → open PR → board: In review
+┌─────────────┐  agent does NOT auto-open the PR — it proposes one
+│  REVIEW     │  /code-review → push branch → owner tests → (go-ahead) open PR → In review
 └─────────────┘
     │
     ▼
 ┌─────────────┐  owner merges (never the agent) → board: Done
-│  SHIP       │  sub-issue branch → parent branch; parent branch → main via one PR
+│  SHIP       │  sub-issue branch → parent branch (no PR); parent branch → main via one proposed PR
 └─────────────┘
 ```
 
@@ -175,13 +175,17 @@ parallel:
 - **Standards** — does the code follow this repo's documented coding standards?
 - **Spec** — does it match what the originating issue/spec asked for?
 
-Address findings, then open the PR and move the card to **In review**.
+Address findings and push the finished work to the branch.
 
 ### 4.6 Ship
 
-- **All changes ship as a pull request. Never commit to `main`, never merge on your own initiative.**
-- The agent proposes the merge and flags any conflicts; **the repo owner reviews and merges.** An
-  agent merges only a specific PR the owner has explicitly told it to merge.
+- **Do not automatically open a PR when implementation finishes — propose one.** Push the branch,
+  say it's ready, and let the owner **test the code in the branch** first. Only on the owner's
+  explicit go-ahead do you open the PR to `main` and move the card to **In review**. (Sub-issue →
+  parent-branch work is exempt: there is no PR at the sub-issue level — push and merge freely.)
+- **Never commit to `main`, never merge on your own initiative.** The agent proposes the merge and
+  flags any conflicts; **the repo owner reviews and merges.** An agent merges only a specific PR the
+  owner has explicitly told it to merge.
 - On merge, the card moves to **Done**.
 
 ---
@@ -236,4 +240,5 @@ repo's active workflow.
 ```
 
 **Do first, always:** move the issue to *In progress* and assign the owner.
-**Never:** push to `main`, or merge a PR on your own initiative.
+**When done:** push the branch and *propose* a PR — let the owner test before you open it.
+**Never:** push to `main`, auto-open a PR into `main`, or merge a PR on your own initiative.
