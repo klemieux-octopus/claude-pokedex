@@ -4,9 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-This is not an application — it is a **knowledge base of agent skills**. Each skill is a subdirectory holding a `SKILL.md` plus any supporting Markdown it references. There is no build, no test suite, no lint step, and no runtime. Changes are to Markdown content only.
+This repo has **two parts**, and how you work depends on which you're touching:
 
-The skills are vendored from the `mattpocock/skills` GitHub repo. `skills-lock.json` is the manifest: it maps each local skill name to its upstream `source`, `skillPath`, and a `computedHash` of the pinned content. Treat `skills-lock.json` as the source of truth for provenance — when adding, removing, or updating a skill, keep it in sync with `.claude/skills/`, and update `computedHash` when the content changes.
+1. A **knowledge base of agent skills** under `.claude/skills/`. Each skill is a subdirectory holding a `SKILL.md` plus supporting Markdown — no build, no test suite, no runtime; changes here are Markdown-only. The skills are vendored from the `mattpocock/skills` GitHub repo. `skills-lock.json` is the manifest: it maps each local skill name to its upstream `source`, `skillPath`, and a `computedHash` of the pinned content. Treat `skills-lock.json` as the source of truth for provenance — when adding, removing, or updating a skill, keep it in sync with `.claude/skills/`, and update `computedHash` when the content changes.
+2. The **Pokédex web app** under `pokedex/` — a React + Vite + TypeScript app, built test-first from its spec at [`docs/SPEC.md`](docs/SPEC.md). Unlike the skills, it *does* have a build, a test suite, and a GitHub Pages deploy; see [`pokedex/README.md`](pokedex/README.md) for the dev / test / build / deploy commands.
+
+The skill-focused sections below (skill anatomy, how the skills relate, agent-skills config) describe part 1; the **Task workflow** section applies repo-wide, to app work included.
 
 ## Where skills live
 
