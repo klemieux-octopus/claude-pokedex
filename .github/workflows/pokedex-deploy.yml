@@ -4,7 +4,14 @@ on:
   push:
     branches: [main]
     paths:
-      - 'pokedex/**'
+      - 'src/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'index.html'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.ts'
+      - 'tsconfig*.json'
       - '.github/workflows/pokedex-deploy.yml'
   workflow_dispatch:
 
@@ -22,16 +29,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: pokedex
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: pokedex/package-lock.json
+          cache-dependency-path: package-lock.json
       - name: Install
         run: npm ci
       - name: Type-check
@@ -43,7 +47,7 @@ jobs:
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: pokedex/dist
+          path: dist
 
   deploy:
     needs: build

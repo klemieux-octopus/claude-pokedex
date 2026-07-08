@@ -18,11 +18,11 @@ The repo has **two parts**, and the life cycle applies differently to each:
 | Part | Location | Has build/test/deploy? | Nature of changes |
 | --- | --- | --- | --- |
 | **Agent skills knowledge base** | `.claude/skills/` | No | Markdown only (vendored from `mattpocock/skills`; provenance tracked in `skills-lock.json`) |
-| **Pokédex web app** | `pokedex/` | Yes — React + Vite + TS, test suite, GitHub Pages deploy | Code, built test-first from its spec |
+| **Pokédex web app** | repo root (`src/`, `scripts/`, `public/`, …) | Yes — React + Vite + TS, test suite, GitHub Pages deploy | Code, built test-first from its spec |
 
 The workflow below is repo-wide. The only difference is the **build/verify** stage: skill changes
 are reviewed for content and links; app changes must pass typecheck, tests, and build (see
-[`pokedex/README.md`](pokedex/README.md)).
+[`README.md`](README.md)).
 
 ---
 
@@ -164,7 +164,7 @@ context between tickets**.
 2. Cut a branch (see [§5](#5-branching--pull-requests)).
 3. `/implement`: build the work; **use `/tdd`** at the pre-agreed seams (red → green → refactor).
 4. Typecheck regularly, run single test files as you go, and the **full suite once at the end**
-   (`pokedex/` — see [`pokedex/README.md`](pokedex/README.md)).
+   (repo root — see [`README.md`](README.md)).
 5. Commit to the current branch (never `main`).
 
 ### 4.5 Review — `/code-review`
