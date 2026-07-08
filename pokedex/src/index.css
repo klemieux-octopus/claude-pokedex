@@ -1,10 +1,14 @@
-/* Minimal skeleton styling. The full "Pokédex Device" visual identity
-   (tokens, fonts, light/dark) lands in the theming ticket. */
+/* Functional styling for the browse list + master-detail shell. The full
+   "Pokédex Device" visual identity (tokens, light/dark, fonts) is ticket #17;
+   the responsive mobile stack is ticket #16. */
 :root {
   --paper: #fdf6e3;
+  --panel: #fff;
   --ink: #2a1a12;
+  --muted: #6d5a44;
+  --line: #efe2c4;
   --accent: #c81f34;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -17,34 +21,135 @@ body {
   color: var(--ink);
 }
 
-.shell {
-  max-width: 720px;
+.app {
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 20px;
 }
 
 .masthead {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom: 16px;
 }
 
 .masthead h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: 28px;
   letter-spacing: -0.02em;
 }
 
 .dot {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 4px rgba(200, 31, 52, 0.18);
 }
 
-.lede {
-  margin-top: 16px;
-  color: #6d5a44;
-  line-height: 1.6;
+.browser {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.list-pane {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  max-height: 76vh;
+  overflow-y: auto;
+}
+
+.species-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.species-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.species-row:hover {
+  background: var(--paper);
+}
+
+.species-row[aria-current='true'] {
+  border-left-color: var(--accent);
+  background: var(--paper);
+}
+
+.species-thumb {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  object-fit: contain;
+}
+
+.species-thumb--empty {
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.species-num {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 46px;
+}
+
+.species-name {
+  flex: 1;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.species-types {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 999px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.detail-pane {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  min-height: 200px;
+}
+
+.notice {
+  color: var(--muted);
+}
+
+.notice--error {
+  color: var(--accent);
 }
