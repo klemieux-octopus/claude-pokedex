@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Language
+
+**All work must be done in French.** This applies to everything you produce: chat responses to the
+user, specs and tickets published to the issue tracker, issue and PR titles and bodies, commit
+messages, code comments, and documentation. Write prose, explanations, and narration in French.
+
+Keep in their original form the things that would break or become non-idiomatic if translated:
+code identifiers (variables, functions, types), API and CLI names, file paths, labels, and any
+established technical term or library name that has no natural French equivalent. When in doubt,
+translate the explanation but leave the symbol untouched.
+
 ## What this repo is
 
 This repo has **two parts**, and how you work depends on which you're touching:
