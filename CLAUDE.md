@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Language
+
+**All work must be done in French.** This applies to everything you produce: chat responses to the
+user, specs and tickets published to the issue tracker, issue and PR titles and bodies, commit
+messages, code comments, and documentation. Write prose, explanations, and narration in French.
+
+Keep in their original form the things that would break or become non-idiomatic if translated:
+code identifiers (variables, functions, types), API and CLI names, file paths, labels, and any
+established technical term or library name that has no natural French equivalent. When in doubt,
+translate the explanation but leave the symbol untouched.
+
 ## What this repo is
 
 This repo has **two parts**, and how you work depends on which you're touching:
@@ -64,9 +75,10 @@ Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agent
 Rules for working tasks on the project kanban board ([GitHub Project #3](https://github.com/users/klemieux-octopus/projects/3) — columns and the `gh` commands to move cards are documented in `docs/agents/issue-tracker.md`):
 
 - **Never push to `main`, and never merge a PR on your own initiative.** You push only to feature branches. When a PR is ready, **propose the merge** (say it's ready and offer) and **flag any merge conflicts** — the repo owner reviews the code and decides. Merge only a specific PR the owner has **explicitly told you to merge**; absent that explicit go-ahead you never merge (the owner may merge it themselves and tell you).
-- **Putting the issue in the right state is the first step — before any work.** When you start a task, *first* move its issue to the **In progress** column and assign it to me (the repo owner); only then begin the work.
+- **Putting the issue in the right state is the FIRST action — before ANY work on it.** "Work" is not just writing code: it includes grilling, design, research, prototyping, planning, and running any skill against the issue (`/grill-me`, `/implement`, `/tdd`, `/prototype`, `/to-spec`, …). The instant you begin working an issue, your first step is to move it to the **In progress** column and assign it to me (the repo owner); only then do the work. If you ever notice you're mid-work with the state unset, stop and set it immediately.
 - **Before taking any task that is not in the Ready column, or is already assigned to someone else**, check with me first — do not start work on it until I confirm.
-- **All changes ship as a pull request** — never commit directly to `main`. Stage the work on a branch and open a PR.
+- **All work is staged on a branch — never commit directly to `main`.** Work reaches `main` only through a PR, but that PR is **not** opened automatically when implementation finishes; see the review-handoff rule below.
 - **Every PR to `main` must be linked to an issue** for tracking — reference it in the PR body (`Closes #<n>` for ticketed work, or `Related: #<n>`). If a change has no natural ticket, create a tracking issue first.
-- **Sub-issues merge into their parent issue's branch, never into `main` directly.** For a parent issue that has sub-issues: cut one long-lived **parent branch** off `main`; work each sub-issue on its own branch off the parent branch and merge it back into the parent branch (push to the parent branch freely). When **all** sub-issues are done, open a single PR from the parent branch to `main`. Every sub-issue is claimed by whoever claimed the parent issue.
-- **When a task's work is ready for review**, open its pull request and move the ticket to the **In review** column on the kanban board.
+- **Sub-issues merge into their parent issue's branch, never into `main` directly.** For a parent issue that has sub-issues: cut one long-lived **parent branch** off `main`; work each sub-issue on its own branch off the parent branch and merge it back into the parent branch (push to the parent branch freely). **There is no PR at the sub-issue level** — when a sub-issue is done, just push its branch and merge it into the parent branch; the review-handoff rule below applies only to the final PR into `main`. When **all** sub-issues are done, **propose** (don't automatically open) a single PR from the parent branch to `main`. Every sub-issue is claimed by whoever claimed the parent issue.
+- **Sub-issues you create while working a parent issue are auto-claimed and boarded.** As you create each sub-issue, immediately (a) **assign it to me** (the repo owner) — it inherits the parent's claim, so no need to ask — and (b) **add it to the kanban board and set its Status** to the column matching its state: **Ready** if it's specified and unblocked, **Backlog** if it's blocked by another open ticket, **In progress** only once you actually start it. Never leave a newly created sub-issue unassigned or off the board.
+- **When implementation is done, do NOT automatically open a PR — propose it.** Push the finished work to its branch, tell me it's ready, and let me test the code in the branch first. Only once I'm happy and give an explicit go-ahead do you open the PR to `main` and move the ticket to the **In review** column. This propose-first gate is for PRs into `main` only; sub-issue → parent-branch work is exempt (see the sub-issue rule above).
