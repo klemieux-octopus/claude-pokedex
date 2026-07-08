@@ -1,6 +1,7 @@
 import type { SpeciesIndexEntry } from './data/types'
-import { typeColor } from './ui/typeColors'
+import { typeColor, typeTextColor } from './ui/typeColors'
 import { dexLabel } from './ui/format'
+import { pickArtwork } from './ui/artwork'
 
 interface Props {
   species: SpeciesIndexEntry[]
@@ -13,7 +14,7 @@ export function SpeciesList({ species, selectedDex, shiny, onSelect }: Props) {
   return (
     <ul className="species-list" aria-label="Pokémon">
       {species.map((s) => {
-        const thumb = shiny ? (s.thumbnailShiny ?? s.thumbnail) : s.thumbnail
+        const thumb = pickArtwork(shiny, s.thumbnailShiny, s.thumbnail)
         return (
         <li key={s.dex}>
           <button
@@ -38,7 +39,11 @@ export function SpeciesList({ species, selectedDex, shiny, onSelect }: Props) {
             <span className="species-name">{s.name}</span>
             <span className="species-types">
               {s.types.map((t) => (
-                <span key={t} className="type-badge" style={{ background: typeColor(t) }}>
+                <span
+                  key={t}
+                  className="type-badge"
+                  style={{ background: typeColor(t), color: typeTextColor(t) }}
+                >
                   {t}
                 </span>
               ))}

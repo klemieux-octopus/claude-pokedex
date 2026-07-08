@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from './App'
-import type { SpeciesIndexEntry } from './data/types'
+import { __clearDetailCache } from './data/useSpeciesDetail'
+import type { SpeciesDetail, SpeciesIndexEntry } from './data/types'
 
 // Deliberately out of dex order — the app must sort.
 const INDEX: SpeciesIndexEntry[] = [
@@ -9,17 +10,56 @@ const INDEX: SpeciesIndexEntry[] = [
   { dex: 4, name: 'charmander', types: ['fire'], generation: 1, statTotal: 309, thumbnail: 'char.png', thumbnailShiny: 'char-shiny.png' },
 ]
 
+// Document de détail synthétique pour une espèce de l'INDEX.
+function detailDoc(dex: number): SpeciesDetail {
+  const e = INDEX.find((s) => s.dex === dex)
+  const name = e?.name ?? `mon-${dex}`
+  return {
+    dex,
+    name,
+    generation: 1,
+    isLegendary: false,
+    isMythical: false,
+    flavorText: '',
+    evolutionChain: null,
+    varieties: [
+      {
+        name,
+        isDefault: true,
+        types: e?.types ?? ['normal'],
+        stats: { hp: 1, attack: 1, defense: 1, specialAttack: 1, specialDefense: 1, speed: 1 },
+        abilities: [],
+        height: 1,
+        weight: 1,
+        moves: [],
+        sprites: { default: null, shiny: null, officialArtwork: `art-${dex}.png` },
+      },
+    ],
+  }
+}
+
 let fetchMock: ReturnType<typeof vi.fn>
 
+// Route index.json → INDEX ; data/species/<dex>.json → detailDoc.
 beforeEach(() => {
   window.history.replaceState(null, '', '/')
-  fetchMock = vi.fn(async () => ({ ok: true, json: async () => INDEX }))
+  __clearDetailCache()
+  fetchMock = vi.fn(async (url: string) => {
+    const u = String(url)
+    if (u.includes('index.json')) return { ok: true, status: 200, json: async () => INDEX }
+    const m = u.match(/species\/(\d+)\.json$/)
+    if (m) return { ok: true, status: 200, json: async () => detailDoc(Number(m[1])) }
+    return { ok: false, status: 404, json: async () => ({}) }
+  })
   vi.stubGlobal('fetch', fetchMock)
 })
 
 afterEach(() => {
   vi.unstubAllGlobals()
 })
+
+// Le volet de détail (heading de niveau 2) — distinct du titre h1 « Pokédex ».
+const detailName = () => screen.queryByRole('heading', { level: 2 })?.textContent
 
 // Species rows only (excludes control buttons like type chips / Clear).
 const rowNames = (c: HTMLElement) =>
@@ -52,7 +92,7 @@ describe('App — browse the species list', () => {
   it('restores the selection from the URL on load (reload-stable)', async () => {
     window.history.replaceState(null, '', '/?dex=4')
     const { container } = render(<App />)
-    await screen.findByText('charmander')
+    await screen.findByText('bulbasaur') // liste rendue (nom non sélectionné, unique)
     expect(selectedName(container)).toBe('charmander')
   })
 })
@@ -116,11 +156,51 @@ describe('App — list controls', () => {
   it('keeps the selection even when a filter hides the selected Pokémon', async () => {
     render(<App />)
     fireEvent.click(await screen.findByText('pikachu'))
-    await waitFor(() => expect(window.location.search).toContain('dex=25'))
+    await waitFor(() => expect(detailName()).toBe('pikachu')) // détail chargé
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'bulba' } })
-    // Pikachu's row is filtered out, but the detail pane still shows it.
-    expect(screen.getByText(/#0025 selected/)).toBeInTheDocument()
+    // La ligne de Pikachu est filtrée, mais le volet de détail l'affiche toujours.
+    expect(detailName()).toBe('pikachu')
     expect(window.location.search).toContain('dex=25')
     expect(window.location.search).toContain('q=bulba')
+  })
+})
+
+describe('App — volet de détail (#41)', () => {
+  it('charge et affiche le détail de l’espèce sélectionnée, sans appeler PokéAPI', async () => {
+    render(<App />)
+    fireEvent.click(await screen.findByText('charmander'))
+    await waitFor(() => expect(detailName()).toBe('charmander'))
+    for (const call of fetchMock.mock.calls) expect(String(call[0])).not.toContain('pokeapi')
+    expect(fetchMock.mock.calls.some((c) => /species\/4\.json$/.test(String(c[0])))).toBe(true)
+  })
+
+  it('invite à sélectionner un Pokémon quand rien n’est sélectionné', async () => {
+    render(<App />)
+    await screen.findByText('bulbasaur')
+    expect(screen.getByText(/sélectionne un pokémon/i)).toBeInTheDocument()
+  })
+
+  it('ne refait pas de fetch en re-sélectionnant une espèce déjà vue', async () => {
+    const { container } = render(<App />)
+    const clickRow = (name: string) =>
+      fireEvent.click(
+        [...container.querySelectorAll<HTMLElement>('.species-row')].find(
+          (r) => r.querySelector('.species-name')?.textContent === name,
+        )!,
+      )
+    await screen.findByText('bulbasaur')
+    const charFetches = () =>
+      fetchMock.mock.calls.filter((c) => /species\/4\.json$/.test(String(c[0]))).length
+
+    clickRow('charmander')
+    await waitFor(() => expect(detailName()).toBe('charmander'))
+    expect(charFetches()).toBe(1)
+
+    clickRow('bulbasaur')
+    await waitFor(() => expect(detailName()).toBe('bulbasaur'))
+
+    clickRow('charmander') // revisite → servi depuis le cache
+    await waitFor(() => expect(detailName()).toBe('charmander'))
+    expect(charFetches()).toBe(1) // aucun refetch
   })
 })
