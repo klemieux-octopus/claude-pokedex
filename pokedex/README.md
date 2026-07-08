@@ -2,7 +2,7 @@
 
 A personal, browser-based Pokédex — browse and look up Pokémon across all
 generations, backed by a build-time snapshot of [PokéAPI](https://pokeapi.co).
-See [`../docs/SPEC.md`](../docs/SPEC.md) for the full spec.
+See the spec comment on [issue #7](https://github.com/klemieux-octopus/claude-pokedex/issues/7) for the full spec.
 
 React + Vite + TypeScript SPA, deployed to GitHub Pages.
 
