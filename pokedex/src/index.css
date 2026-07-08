@@ -1,0 +1,50 @@
+/* Minimal skeleton styling. The full "Pokédex Device" visual identity
+   (tokens, fonts, light/dark) lands in the theming ticket. */
+:root {
+  --paper: #fdf6e3;
+  --ink: #2a1a12;
+  --accent: #c81f34;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(200, 31, 52, 0.18);
+}
+
+.lede {
+  margin-top: 16px;
+  color: #6d5a44;
+  line-height: 1.6;
+}
