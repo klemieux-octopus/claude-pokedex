@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokédex</title>
+    <!--
+      GitHub Pages serves this for any unknown path. It re-routes to the app's
+      base, encoding the originally requested path/query so index.html can
+      restore it into history — the standard spa-github-pages technique
+      (https://github.com/rafgraph/spa-github-pages). Lets client-side deep
+      links resolve on Pages.
+
+      pathSegmentsToKeep = 1 keeps the project-site base segment (/knowledge-base).
+      Keep it in sync with the Vite `base` depth (1 for /knowledge-base/, 0 for root).
+    -->
+    <script>
+      (function () {
+        var pathSegmentsToKeep = 1
+        var l = window.location
+        l.replace(
+          l.protocol +
+            '//' +
+            l.hostname +
+            (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
+            '/?/' +
+            l.pathname
+              .slice(1)
+              .split('/')
+              .slice(pathSegmentsToKeep)
+              .join('/')
+              .replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash,
+        )
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>
