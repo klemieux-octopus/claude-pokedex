@@ -4,3 +4,9 @@ coverage
 *.local
 .vite
 *.tsbuildinfo
+
+# Throwaway design mockups (cause of recurring GitHub Desktop stashes)
+prototype/
+
+# Generated PokéAPI snapshot (rebuilt at build time / in CI, not committed)
+public/data/

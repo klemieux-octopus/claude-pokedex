@@ -1,3 +1,15 @@
 # We work exclusively with Claude Code, which discovers skills in .claude/skills/.
 # The vendor-neutral .agents/skills/ copy is redundant and not tracked here.
 .agents/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
