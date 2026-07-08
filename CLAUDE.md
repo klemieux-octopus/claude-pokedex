@@ -52,6 +52,13 @@ Default vocabulary — each label string equals its role name (`needs-triage`, `
 
 Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
 
+## Spec & ticket conventions
+
+**GitHub Issues are the source of truth.** Specs, plans, and tickets produced while working are never saved as files in the repo — they live on the issues themselves.
+
+- **`/to-spec`**: publish the spec it produces as a **comment on the parent issue**. Do **not** write it to a `SPEC.md` / `PLAN.md` (or any other doc file) in the repo.
+- **`/to-tickets`**: first ask which **parent issue number** to work from. Read the spec from that issue's comments, then split it into **sub-issues of that parent issue**.
+
 ## Task workflow
 
 Rules for working tasks on the project kanban board ([GitHub Project #3](https://github.com/users/klemieux-octopus/projects/3) — columns and the `gh` commands to move cards are documented in `docs/agents/issue-tracker.md`):
