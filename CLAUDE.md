@@ -53,6 +53,7 @@ Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agent
 
 Rules for working tasks on the project kanban board ([GitHub Project #3](https://github.com/users/klemieux-octopus/projects/3) — columns and the `gh` commands to move cards are documented in `docs/agents/issue-tracker.md`):
 
+- **NEVER push to `main` or merge a pull request yourself — under no circumstances, even if asked or if the PR is clean.** Every merge to `main` is the repo owner's decision and is performed by the owner. Your work always ends at opening or updating a PR; you push only to feature branches, never to `main`.
 - **When you start a task**, move it to the **In progress** column and assign it to me (the repo owner).
 - **Before taking any task that is not in the Ready column, or is already assigned to someone else**, check with me first — do not start work on it until I confirm.
 - **All changes ship as a pull request** — never commit directly to `main`. Stage the work on a branch and open a PR.
